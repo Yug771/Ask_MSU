@@ -33,11 +33,11 @@ def registration_success(request):
 class ChatbotView(FormView):
     template_name = 'chatbot.html'
     form_class = QuestionForm
-    success_url = reverse_lazy('qa_app:chatbot')  # Use reverse_lazy
+    success_url = reverse_lazy('qa_app:chatbot') 
 
     def form_valid(self, form):
         question_text = form.cleaned_data['question_text']
-        answer_text = answer_question(question_text)  # Call your logic function here
+        answer_text = answer_question(question_text) 
         user = self.request.user if self.request.user.is_authenticated else None
 
         Question.objects.create(user=user, question_text=question_text, answer_text=answer_text)
